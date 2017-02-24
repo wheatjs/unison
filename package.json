@@ -2,7 +2,7 @@
   "name": "unison-server",
   "version": "0.0.1",
   "description": "Unison Web Server",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "repository": {
     "url": "https://github.com/jacobclevenger/unison.git",
     "type": "git"
