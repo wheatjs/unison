@@ -32,6 +32,40 @@ class ViewRegister {
                 let uri = view_util_1.GenerateURI(metadata.base, routeMetadata.route);
                 // Register the express routes.
                 this.application[method_enum_1.MethodMap[routeMetadata.method]](uri, (request, response) => {
+                    let requiredQueryParams = Reflect.getMetadata('unison:required-query', new view(), method);
+                    let requiredBodyParams = Reflect.getMetadata('unison:required-body', new view(), method);
+                    let requiredHeaders = Reflect.getMetadata('unison:required-headers', new view(), method);
+                    console.log(request.body);
+                    if (requiredQueryParams !== undefined && requiredQueryParams.length > 0) {
+                        for (let param of requiredQueryParams) {
+                            if (request.query[param] === undefined) {
+                                return response.json({
+                                    success: false,
+                                    error: `Missing Query Parameter: ${param}`
+                                });
+                            }
+                        }
+                    }
+                    if (requiredHeaders !== undefined && requiredHeaders.length > 0) {
+                        for (let header of requiredHeaders) {
+                            if (request.headers[header] === undefined) {
+                                return response.json({
+                                    success: false,
+                                    error: `Missing Header Parameter: ${header}`
+                                });
+                            }
+                        }
+                    }
+                    if (requiredBodyParams !== undefined && requiredBodyParams.length > 0) {
+                        for (let param of requiredBodyParams) {
+                            if (request.body[param] === undefined) {
+                                return response.json({
+                                    success: false,
+                                    error: `Missing Body Parameter: ${param}`
+                                });
+                            }
+                        }
+                    }
                     // Ensure request passses all permission checks.
                     if (permissions !== undefined && permissions.length > 0) {
                         for (let permission of permissions) {

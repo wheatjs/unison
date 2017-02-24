@@ -39,7 +39,8 @@ export class UnisonServer {
 
             // Setup the application server.
             this.application = express();
-            this.application.use(bodyParser.json({ type: 'application/*+json' }));
+            this.application.use(bodyParser.urlencoded({ extended: false }));
+            this.application.use(bodyParser.json());
 
             // Setup app injectables.
             this.injectables = new Injector(this.metadata.services || []).getInjectables();

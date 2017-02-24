@@ -1,4 +1,4 @@
-import { View, Route, Method, Permissions } from '../../index';
+import { View, Route, Method, Permissions, RequiredQuery, RequiredHeaders, RequiredBody } from '../../index';
 import { Request, Response } from 'express';
 
 import { UserService } from '../services/user.service';
@@ -11,7 +11,8 @@ export class HomeView {
         private userService: UserService
     ) { }
 
-    @Route({ route: '/list', method: Method.GET })
+    @RequiredBody(['username'])
+    @Route({ route: '/list', method: Method.POST })
     public list(req: Request, res: Response): Response {
         return res.send({
             success: true,

@@ -27,7 +27,8 @@ class UnisonServer {
             this.metadata = Reflect.getMetadata('unison:app', unisonApp);
             // Setup the application server.
             this.application = express();
-            this.application.use(bodyParser.json({ type: 'application/*+json' }));
+            this.application.use(bodyParser.urlencoded({ extended: false }));
+            this.application.use(bodyParser.json());
             // Setup app injectables.
             this.injectables = new dependency_injection_1.Injector(this.metadata.services || []).getInjectables();
             // Setup application views.

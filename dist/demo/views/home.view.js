@@ -22,7 +22,8 @@ let HomeView = class HomeView {
     }
 };
 __decorate([
-    index_1.Route({ route: '/list', method: index_1.Method.GET }),
+    index_1.RequiredBody(['username']),
+    index_1.Route({ route: '/list', method: index_1.Method.POST }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Object)

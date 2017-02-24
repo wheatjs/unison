@@ -6,3 +6,6 @@ export { Injectable } from './dependency-injection/injectable.decorator';
 export { IPermission } from './permission/permission.interface';
 export { Permissions } from './permission/permissions.decorator';
 export { Method } from './view/method.enum';
+export { RequiredBody } from './required/body.decorator';
+export { RequiredQuery } from './required/query.decorator';
+export { RequiredHeaders } from './required/headers.decorator';
