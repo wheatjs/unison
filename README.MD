@@ -5,6 +5,12 @@ Unison server is a small node express web server written in Typescirpt. It provi
 
 ## Basic Usage
 
+> npm install --save unison-server
+
+or
+
+> yarn add unison-server
+
 ### Creating a basic app.
 
 ```` typescript
