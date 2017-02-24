@@ -3,6 +3,8 @@
         "target": "es6",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
+        "declaration": true,
+        "declarationDir": "dist",
         "moduleResolution": "node",
         "module": "commonjs",
         "lib": [

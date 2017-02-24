@@ -11,7 +11,6 @@ export class HomeView {
         private userService: UserService
     ) { }
 
-    @Permissions([Authenticated])
     @Route({ route: '/list', method: Method.GET })
     public list(req: Request, res: Response): Response {
         return res.send({

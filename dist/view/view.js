@@ -33,7 +33,7 @@ class ViewRegister {
                 // Register the express routes.
                 this.application[method_enum_1.MethodMap[routeMetadata.method]](uri, (request, response) => {
                     // Ensure request passses all permission checks.
-                    if (permissions.length > 0) {
+                    if (permissions !== undefined && permissions.length > 0) {
                         for (let permission of permissions) {
                             if (!this.injectables[general_util_1.ClassName(permission)]['check'](request, response)) {
                                 return this.injectables[general_util_1.ClassName(permission)]['reject'](request, response);

@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 const index_1 = require("../../index");
 const user_service_1 = require("../services/user.service");
-const authenticated_permission_1 = require("../permissions/authenticated.permission");
 let HomeView = class HomeView {
     constructor(userService) {
         this.userService = userService;
@@ -23,7 +22,6 @@ let HomeView = class HomeView {
     }
 };
 __decorate([
-    index_1.Permissions([authenticated_permission_1.Authenticated]),
     index_1.Route({ route: '/list', method: index_1.Method.GET }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),

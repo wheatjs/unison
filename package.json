@@ -1,6 +1,6 @@
 {
   "name": "unison-server",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "Unison Web Server",
   "main": "./dist/index.js",
   "repository": {
@@ -9,6 +9,7 @@
   },
   "author": "Jacob Clevenger <jacobrclevenger@gmail.com>",
   "license": "MIT",
+  "typings": "./dist/index",
   "dependencies": {
     "@types/body-parser": "^0.0.34",
     "@types/chalk": "^0.4.31",

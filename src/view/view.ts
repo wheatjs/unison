@@ -48,7 +48,7 @@ export class ViewRegister {
                 this.application[MethodMap[routeMetadata.method]](uri, (request, response) => {
 
                     // Ensure request passses all permission checks.
-                    if (permissions.length > 0) {
+                    if (permissions !== undefined && permissions.length > 0) {
                         for (let permission of permissions) {
                             if (!this.injectables[ClassName(permission)]['check'](request, response)) {
                                 return this.injectables[ClassName(permission)]['reject'](request, response);
