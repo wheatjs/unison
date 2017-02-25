@@ -23,8 +23,6 @@ export class ViewRegister {
         private injectables: Object,
         private application: Application
     ) {
-        console.log(chalk.bgCyan.black('Registering Routes'));
-
         for (let view of this.views)
             this.register(view);
 
@@ -53,8 +51,6 @@ export class ViewRegister {
                     let requiredQueryParams = Reflect.getMetadata('unison:required-query', new view(), method);
                     let requiredBodyParams = Reflect.getMetadata('unison:required-body', new view(), method);
                     let requiredHeaders = Reflect.getMetadata('unison:required-headers', new view(), method);
-
-                    console.log(request.body);
 
                     if (requiredQueryParams !== undefined && requiredQueryParams.length > 0) {
                         for (let param of requiredQueryParams) {

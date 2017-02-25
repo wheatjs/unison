@@ -13,8 +13,6 @@ export class Injector {
     constructor(injectables: Array<any>) {
         for (let injectable of injectables)
             this.resolve(injectable);
-
-        console.log(this.container);
     }
 
     /**
