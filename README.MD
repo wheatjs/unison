@@ -110,5 +110,45 @@ export class Authenticated implements IPermission {
 }
 ````
 
+### Other Useful Decorators
+
+#### @RequiredHeaders()
+Will reject any request that doesn't have the required headers present.
+````
+...
+@RequiredHeaders(['authorization'])
+@Route({...})
+public method(): void {}
+...
+
+````
+
+#### @RequiredBody()
+>Note this only works for first level parameters. In future updates support for deeper levels will be added.
+
+Will reject any request that doesn't have the required body properties present.
+````
+...
+@RequiredBody(['username', 'email'])
+@Route({...})
+public method(): void {}
+...
+
+````
+
+#### @RequiredQuery()
+Will reject any request that doesn't have the required query parameters present.
+````
+...
+@RequiredQuery(['page', 'limit'])
+@Route({...})
+public method(): void {}
+...
+
+````
+
+
+
+
 ## Want to help?
 If you would like to help, feel free to create issues, create pull requests, or suggest future improvements that could be made.
