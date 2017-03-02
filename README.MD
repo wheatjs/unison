@@ -1,3 +1,5 @@
+![alt tag](https://i.imgur.com/O2PwJV4.png)
+
 # Unison Server
 Unison server is a small node express web server written in Typescript. It provides basic features like dependency injection and route permissions.
 
