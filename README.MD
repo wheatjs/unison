@@ -1,5 +1,5 @@
 # Unison Server
-Unison server is a small node express web server written in Typescirpt. It provides basic features like dependency injection and route permissions.
+Unison server is a small node express web server written in Typescript. It provides basic features like dependency injection and route permissions.
 
 > Note: This is a very early version and has not been tested. Use at your own risk.
 
