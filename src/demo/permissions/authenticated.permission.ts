@@ -6,8 +6,11 @@ export class Authenticated implements IPermission {
 
     constructor() { }
 
-    public check(req: Request, res: Response): boolean {
-        return req.param('auth') === '123';
+    public check(req: Request, res: Response): boolean | Promise<boolean> {
+        // return true;
+        return new Promise((resolve, reject) => {
+            return resolve(true);
+        });
     }
 
     public reject(req: Request, res: Response): Response {

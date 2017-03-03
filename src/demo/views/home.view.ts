@@ -11,6 +11,7 @@ export class HomeView {
         private userService: UserService
     ) { }
 
+    @Permissions([Authenticated])
     @RequiredBody(['username'])
     @Route({ route: '/list', method: Method.POST })
     public list(req: Request, res: Response): Response {

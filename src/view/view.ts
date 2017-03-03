@@ -88,23 +88,48 @@ export class ViewRegister {
                     // Ensure request passses all permission checks.
                     if (permissions !== undefined && permissions.length > 0) {
                         for (let permission of permissions) {
-                            if (!this.injectables[ClassName(permission)]['check'](request, response)) {
-                                return this.injectables[ClassName(permission)]['reject'](request, response);
+                            if (typeof this.injectables[ClassName(permission)]['check'](request, response).then === 'undefined') {
+                                if (!this.injectables[ClassName(permission)]['check'](request, response)) {
+                                    return this.injectables[ClassName(permission)]['reject'](request, response);
+                                }
+
+                                // Inject view dependencies.
+                                let dependencies = [];
+
+                                if (Reflect.getMetadata('design:paramtypes', view) !== undefined &&
+                                    Reflect.getMetadata('design:paramtypes', view).length > 0) {
+                                    for (let dependency of Reflect.getMetadata('design:paramtypes', view)) {
+                                        dependencies.push(this.injectables[ClassName(dependency)]);
+                                    }
+                                }
+
+                                new view(...dependencies)[method](request, response);
+                            } else {
+                                let passed = true;
+
+                                this
+                                    .injectables[ClassName(permission)]['check'](request, response)
+                                    .then(pass => {
+                                        if (pass) {
+                                            // Inject view dependencies.
+                                            let dependencies = [];
+
+                                            if (Reflect.getMetadata('design:paramtypes', view) !== undefined &&
+                                                Reflect.getMetadata('design:paramtypes', view).length > 0) {
+                                                for (let dependency of Reflect.getMetadata('design:paramtypes', view)) {
+                                                    dependencies.push(this.injectables[ClassName(dependency)]);
+                                                }
+                                            }
+
+                                            new view(...dependencies)[method](request, response);
+                                        } else {
+                                            return this.injectables[ClassName(permission)]['reject'](request, response);
+                                        }
+                                    })
+                                    .catch(error => this.injectables[ClassName(permission)]['reject'](request, response));
                             }
                         }
                     }
-
-                    // Inject view dependencies.
-                    let dependencies = [];
-
-                    if (Reflect.getMetadata('design:paramtypes', view) !== undefined &&
-                        Reflect.getMetadata('design:paramtypes', view).length > 0) {
-                        for (let dependency of Reflect.getMetadata('design:paramtypes', view)) {
-                            dependencies.push(this.injectables[ClassName(dependency)]);
-                        }
-                    }
-
-                    new view(...dependencies)[method](request, response);
 
                 });
 

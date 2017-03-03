@@ -1,8 +1,11 @@
 {
   "name": "unison-server",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Unison Web Server",
   "main": "./dist/index.js",
+  "scripts": {
+    "demo": "node ./dist/demo/app.js"
+  },
   "repository": {
     "url": "https://github.com/jacobclevenger/unison.git",
     "type": "git"

@@ -12,7 +12,10 @@ const index_1 = require("../../index");
 let Authenticated = class Authenticated {
     constructor() { }
     check(req, res) {
-        return req.param('auth') === '123';
+        // return true;
+        return new Promise((resolve, reject) => {
+            return resolve(true);
+        });
     }
     reject(req, res) {
         return res.send({

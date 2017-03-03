@@ -11,7 +11,6 @@ class Injector {
         this.container = {};
         for (let injectable of injectables)
             this.resolve(injectable);
-        console.log(this.container);
     }
     /**
      * Gets the injectable dependencies.
