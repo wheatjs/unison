@@ -13,7 +13,7 @@ let Authenticated = class Authenticated {
     constructor() { }
     check(req, res) {
         return new Promise((resolve, reject) => {
-            return resolve(false);
+            return resolve(true);
         });
     }
     reject(req, res) {

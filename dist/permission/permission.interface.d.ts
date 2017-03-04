@@ -1,7 +1,6 @@
 /// <reference types="express" />
-import { Observable } from 'rxjs';
 import { Request, Response } from 'express';
 export interface IPermission {
-    check(request: Request, response: Response): boolean | Observable<boolean> | Promise<boolean>;
+    check(request: Request, response: Response): boolean | Promise<boolean>;
     reject(request: Request, response: Response): void;
 }

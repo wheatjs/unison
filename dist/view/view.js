@@ -16,9 +16,10 @@ class ViewRegister {
         this.views = views;
         this.injectables = injectables;
         this.application = application;
+        this.registered = 0;
         for (let view of this.views)
             this.register(view);
-        console.log(chalk.bgCyan.black(`Registered ${this.views.length} Routes`));
+        console.log(chalk.bgCyan.black(`Registered ${this.registered} Routes`));
     }
     register(view) {
         // Get the view metadata.
@@ -26,6 +27,7 @@ class ViewRegister {
         // Loop through all the methods of the view.
         for (let method of Object.getOwnPropertyNames(Object.getPrototypeOf(new view))) {
             if (Reflect.hasMetadata('unison:route', new view(), method)) {
+                this.registered++;
                 // Get the route data and the route permissions.
                 let routeMetadata = Reflect.getMetadata('unison:route', new view(), method);
                 let permissions = Reflect.getMetadata('unison:permissions', new view(), method);
@@ -48,7 +50,24 @@ class ViewRegister {
                     })
                         .catch(error => { });
                 });
+                this.logRoute(view_util_1.GenerateURI(metadata.base, routeMetadata.route), routeMetadata.method);
             }
+        }
+    }
+    logRoute(url, method) {
+        switch (method) {
+            case method_enum_1.Method.GET:
+                console.log(`${chalk.green(method_enum_1.MethodMap[method].toUpperCase())} - ${chalk.italic(url)}`);
+                break;
+            case method_enum_1.Method.POST:
+                console.log(`${chalk.cyan(method_enum_1.MethodMap[method].toUpperCase())} - ${chalk.italic(url)}`);
+                break;
+            case method_enum_1.Method.DELETE:
+                console.log(`${chalk.red(method_enum_1.MethodMap[method].toUpperCase())} - ${chalk.italic(url)}`);
+                break;
+            default:
+                console.log(`${chalk.black(method_enum_1.MethodMap[method].toUpperCase())} - ${chalk.italic(url)}`);
+                break;
         }
     }
 }

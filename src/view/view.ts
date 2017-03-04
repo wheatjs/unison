@@ -5,7 +5,7 @@ import { ClassName } from '../utils/general.util';
 import { IViewDecorator } from './view.interface';
 import { IRouteDecorator } from "./route.interface";
 import { GenerateURI } from "../utils/view.util";
-import { MethodMap } from "./method.enum";
+import { MethodMap, Method } from "./method.enum";
 import { RequiredBody } from '../required/body.decorator';
 import { RequiredHeaders } from '../required/headers.decorator';
 import { RequiredQuery } from '../required/query.decorator';
@@ -20,6 +20,8 @@ import { Permissions } from "../permission/permissions";
  */
 export class ViewRegister {
 
+    private registered: number = 0;
+
     constructor(
         private views: Array<any>,
         private injectables: Object,
@@ -28,7 +30,7 @@ export class ViewRegister {
         for (let view of this.views)
             this.register(view);
 
-        console.log(chalk.bgCyan.black(`Registered ${this.views.length} Routes`));
+        console.log(chalk.bgCyan.black(`Registered ${this.registered} Routes`));
     }
 
     private register(view: any): void {
@@ -39,6 +41,8 @@ export class ViewRegister {
         // Loop through all the methods of the view.
         for (let method of Object.getOwnPropertyNames(Object.getPrototypeOf(new view))) {
             if (Reflect.hasMetadata('unison:route', new view(), method)) {
+
+                this.registered++;
 
                 // Get the route data and the route permissions.
                 let routeMetadata: IRouteDecorator = Reflect.getMetadata('unison:route', new view(), method);
@@ -72,9 +76,28 @@ export class ViewRegister {
                         .catch(error => { });
                 });
 
+                this.logRoute(GenerateURI(metadata.base, routeMetadata.route), routeMetadata.method);
+
             }
         }
 
+    }
+
+    private logRoute(url: string, method: Method) {
+        switch (method) {
+            case Method.GET:
+                console.log(`${chalk.green(MethodMap[method].toUpperCase())} - ${chalk.italic(url)}`);
+                break;
+            case Method.POST:
+                console.log(`${chalk.cyan(MethodMap[method].toUpperCase())} - ${chalk.italic(url)}`);
+                break;
+            case Method.DELETE:
+                console.log(`${chalk.red(MethodMap[method].toUpperCase())} - ${chalk.italic(url)}`);
+                break;
+            default:
+                console.log(`${chalk.black(MethodMap[method].toUpperCase())} - ${chalk.italic(url)}`);
+                break;
+        }
     }
 
 }
