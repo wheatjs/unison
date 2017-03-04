@@ -3,7 +3,7 @@ import { UnisonApp, UnisonServer } from '../index';
 import { HomeView } from './views/home.view';
 import { APIService } from './services/api.service';
 import { UserService } from './services/user.service';
-import { Authenticated } from './permissions/authenticated.permission';
+import { Authenticated, Authenticated2 } from './permissions/authenticated.permission';
 
 @UnisonApp({
 
@@ -14,7 +14,8 @@ import { Authenticated } from './permissions/authenticated.permission';
     services: [
         APIService,
         UserService,
-        Authenticated
+        Authenticated,
+        Authenticated2
     ]
 
 })

@@ -21,15 +21,28 @@ let HomeView = class HomeView {
             message: this.userService.getUser()
         });
     }
+    create(req, res) {
+        return res.send({
+            success: true,
+            message: this.userService.getUser()
+        });
+    }
 };
 __decorate([
-    index_1.Permissions([authenticated_permission_1.Authenticated]),
-    index_1.RequiredBody(['username']),
     index_1.Route({ route: '/list', method: index_1.Method.POST }),
+    index_1.Permissions([authenticated_permission_1.Authenticated]),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Object)
 ], HomeView.prototype, "list", null);
+__decorate([
+    index_1.Permissions([authenticated_permission_1.Authenticated, authenticated_permission_1.Authenticated2]),
+    index_1.RequiredBody(['username']),
+    index_1.Route({ route: '/create', method: index_1.Method.POST }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Object)
+], HomeView.prototype, "create", null);
 HomeView = __decorate([
     index_1.View({ base: '/api/home' }),
     __metadata("design:paramtypes", [user_service_1.UserService])

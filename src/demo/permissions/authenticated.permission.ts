@@ -20,3 +20,23 @@ export class Authenticated implements IPermission {
     }
 
 }
+
+@Injectable()
+export class Authenticated2 implements IPermission {
+
+    constructor() { }
+
+    public check(req: Request, res: Response): boolean | Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            return resolve(false);
+        });
+    }
+
+    public reject(req: Request, res: Response): Response {
+        return res.send({
+            success: false,
+            error: 'Failed To Authenticate 2'
+        });
+    }
+
+}

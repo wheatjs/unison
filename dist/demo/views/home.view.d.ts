@@ -5,4 +5,5 @@ export declare class HomeView {
     private userService;
     constructor(userService: UserService);
     list(req: Request, res: Response): Response;
+    create(req: Request, res: Response): Response;
 }

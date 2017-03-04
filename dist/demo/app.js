@@ -20,7 +20,8 @@ App = __decorate([
         services: [
             api_service_1.APIService,
             user_service_1.UserService,
-            authenticated_permission_1.Authenticated
+            authenticated_permission_1.Authenticated,
+            authenticated_permission_1.Authenticated2
         ]
     })
 ], App);

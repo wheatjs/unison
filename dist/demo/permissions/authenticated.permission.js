@@ -12,9 +12,8 @@ const index_1 = require("../../index");
 let Authenticated = class Authenticated {
     constructor() { }
     check(req, res) {
-        // return true;
         return new Promise((resolve, reject) => {
-            return resolve(true);
+            return resolve(false);
         });
     }
     reject(req, res) {
@@ -29,3 +28,22 @@ Authenticated = __decorate([
     __metadata("design:paramtypes", [])
 ], Authenticated);
 exports.Authenticated = Authenticated;
+let Authenticated2 = class Authenticated2 {
+    constructor() { }
+    check(req, res) {
+        return new Promise((resolve, reject) => {
+            return resolve(false);
+        });
+    }
+    reject(req, res) {
+        return res.send({
+            success: false,
+            error: 'Failed To Authenticate 2'
+        });
+    }
+};
+Authenticated2 = __decorate([
+    index_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], Authenticated2);
+exports.Authenticated2 = Authenticated2;

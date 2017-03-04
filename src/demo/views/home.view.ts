@@ -2,7 +2,7 @@ import { View, Route, Method, Permissions, RequiredQuery, RequiredHeaders, Requi
 import { Request, Response } from 'express';
 
 import { UserService } from '../services/user.service';
-import { Authenticated } from '../permissions/authenticated.permission';
+import { Authenticated, Authenticated2 } from '../permissions/authenticated.permission';
 
 @View({ base: '/api/home' })
 export class HomeView {
@@ -11,10 +11,19 @@ export class HomeView {
         private userService: UserService
     ) { }
 
-    @Permissions([Authenticated])
-    @RequiredBody(['username'])
     @Route({ route: '/list', method: Method.POST })
+    @Permissions([Authenticated])
     public list(req: Request, res: Response): Response {
+        return res.send({
+            success: true,
+            message: this.userService.getUser()
+        });
+    }
+
+    @Permissions([Authenticated, Authenticated2])
+    @RequiredBody(['username'])
+    @Route({ route: '/create', method: Method.POST })
+    public create(req: Request, res: Response): Response {
         return res.send({
             success: true,
             message: this.userService.getUser()
