@@ -12,7 +12,8 @@ export enum Method {
     LOCK,
     UNLOCK,
     PROPFIND,
-    VIEW
+    VIEW,
+    PUT
 }
 
 export const MethodMap = {
@@ -29,5 +30,6 @@ export const MethodMap = {
     10: 'lock',
     11: 'unlock',
     12: 'propfind',
-    13: 'view'
+    13: 'view',
+    14: 'put'
 }
