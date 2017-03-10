@@ -1,3 +1,7 @@
+/**
+ * Credit to http://www.restapitutorial.com/httpstatuscodes.html for HTTP status codes.
+ */
+
 export const HTTPStatus = {
 
     /**
