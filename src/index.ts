@@ -9,3 +9,4 @@ export { Method } from './view/method.enum';
 export { RequiredBody } from './required/body.decorator';
 export { RequiredQuery } from './required/query.decorator';
 export { RequiredHeaders } from './required/headers.decorator';
+export { HTTPStatus } from './view/status-codes.object';

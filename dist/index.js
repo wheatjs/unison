@@ -19,3 +19,5 @@ var query_decorator_1 = require("./required/query.decorator");
 exports.RequiredQuery = query_decorator_1.RequiredQuery;
 var headers_decorator_1 = require("./required/headers.decorator");
 exports.RequiredHeaders = headers_decorator_1.RequiredHeaders;
+var status_codes_object_1 = require("./view/status-codes.object");
+exports.HTTPStatus = status_codes_object_1.HTTPStatus;

@@ -13,6 +13,7 @@ export declare enum Method {
     UNLOCK = 11,
     PROPFIND = 12,
     VIEW = 13,
+    PUT = 14,
 }
 export declare const MethodMap: {
     0: string;
@@ -29,4 +30,5 @@ export declare const MethodMap: {
     11: string;
     12: string;
     13: string;
+    14: string;
 };

@@ -15,6 +15,7 @@ var Method;
     Method[Method["UNLOCK"] = 11] = "UNLOCK";
     Method[Method["PROPFIND"] = 12] = "PROPFIND";
     Method[Method["VIEW"] = 13] = "VIEW";
+    Method[Method["PUT"] = 14] = "PUT";
 })(Method = exports.Method || (exports.Method = {}));
 exports.MethodMap = {
     0: 'get',
@@ -30,5 +31,6 @@ exports.MethodMap = {
     10: 'lock',
     11: 'unlock',
     12: 'propfind',
-    13: 'view'
+    13: 'view',
+    14: 'put'
 };
