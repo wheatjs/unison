@@ -71,11 +71,8 @@ export class ViewRegister {
                                 }
                             }
 
-                            try {
-                                new view(...dependencies)[method](request, response);
-                            } catch (error) {
-                                console.error(error);
-                            }
+                            new view(...dependencies)[method](request, response)
+                                .catch(error => console.error(error));
                         })
                         .catch(error => { console.error(error) });
                 });
