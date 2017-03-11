@@ -1,4 +1,8 @@
+/**
+ * Credit to http://www.restapitutorial.com/httpstatuscodes.html for HTTP status codes.
+ */
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.HTTPStatus = {
     /**
      * This class of status code indicates a provisional response, consisting only of the Status-Line and optional headers, and is terminated by an empty line. There are no required headers for this class of status code. Since HTTP/1.0 did not define any 1xx status codes, servers MUST NOT send a 1xx response to an HTTP/1.0 client except under experimental conditions.

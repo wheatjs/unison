@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class Required {
     verify(request, headers, body, queries) {
         let errors = [];

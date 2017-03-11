@@ -71,9 +71,13 @@ export class ViewRegister {
                                 }
                             }
 
-                            new view(...dependencies)[method](request, response);
+                            try {
+                                new view(...dependencies)[method](request, response);
+                            } catch (error) {
+                                console.error(error);
+                            }
                         })
-                        .catch(error => { });
+                        .catch(error => { console.error(error) });
                 });
 
                 this.logRoute(GenerateURI(metadata.base, routeMetadata.route), routeMetadata.method);

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Method;
 (function (Method) {
     Method[Method["GET"] = 0] = "GET";

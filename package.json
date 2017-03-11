@@ -1,6 +1,6 @@
 {
   "name": "unison-server",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A Typescript based web server built on express with support for basic dependency injection.",
   "main": "./dist/index.js",
   "scripts": {

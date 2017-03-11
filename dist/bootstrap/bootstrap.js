@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const chalk = require("chalk");
 const bodyParser = require("body-parser");

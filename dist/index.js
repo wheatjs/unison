@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var bootstrap_1 = require("./bootstrap/bootstrap");
 exports.UnisonServer = bootstrap_1.UnisonServer;
 var app_decorator_1 = require("./app/app.decorator");

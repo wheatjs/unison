@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const chalk = require("chalk");
 const general_util_1 = require("../utils/general.util");
 const view_util_1 = require("../utils/view.util");
@@ -46,9 +47,14 @@ class ViewRegister {
                                 dependencies.push(this.injectables[general_util_1.ClassName(dependency)]);
                             }
                         }
-                        new view(...dependencies)[method](request, response);
+                        try {
+                            new view(...dependencies)[method](request, response);
+                        }
+                        catch (error) {
+                            console.error(error);
+                        }
                     })
-                        .catch(error => { });
+                        .catch(error => { console.error(error); });
                 });
                 this.logRoute(view_util_1.GenerateURI(metadata.base, routeMetadata.route), routeMetadata.method);
             }
