@@ -13,7 +13,7 @@ import { Required } from '../required/required';
 import { Permissions } from "../permission/permissions";
 
 /**
- * Registeres the view for the application.
+ * @description Registers application views.
  * 
  * @export
  * @class ViewRegister
@@ -36,7 +36,7 @@ export class ViewRegister {
     private register(view: any): void {
 
         // Get the view metadata.
-        let metadata: IViewDecorator = Reflect.getMetadata('unison:view', view);
+        let metadata: IViewDecorator = Reflect.getMetadata('unison:component', view);
 
         // Loop through all the methods of the view.
         for (let method of Object.getOwnPropertyNames(Object.getPrototypeOf(new view))) {
@@ -74,7 +74,7 @@ export class ViewRegister {
                             new view(...dependencies)[method](request, response)
                                 .catch(error => console.error(error));
                         })
-                        .catch(error => { console.error(error) });
+                        .catch(error => {});
                 });
 
                 this.logRoute(GenerateURI(metadata.base, routeMetadata.route), routeMetadata.method);

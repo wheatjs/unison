@@ -11,6 +11,8 @@ export declare class UnisonServer {
     private application;
     private metadata;
     private injectables;
+    private server;
+    private io;
     constructor(serverConfig: IServerConfig);
     /**
      * Bootstraps a Unison App.
@@ -19,5 +21,5 @@ export declare class UnisonServer {
      *
      * @memberOf UnisonServer
      */
-    bootstrap(unisonApp: Function): void;
+    bootstrap(unisonApp: any): void;
 }

@@ -7,8 +7,8 @@ import { IViewDecorator } from './view.interface';
  * @param {IViewDecorator} config 
  * @returns 
  */
-export function View(config: IViewDecorator) {
+export function Component(config: IViewDecorator) {
     return <TFunction extends Function>(target: TFunction) => {
-        Reflect.defineMetadata('unison:view', config, target);
+        Reflect.defineMetadata('unison:component', config, target);
     }
 }

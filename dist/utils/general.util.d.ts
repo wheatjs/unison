@@ -5,4 +5,4 @@
  * @param {Function} clazz
  * @returns {string}
  */
-export declare function ClassName(clazz: Function): string;
+export declare function ClassName(clazz: any): string;

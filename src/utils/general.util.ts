@@ -5,6 +5,6 @@
  * @param {Function} clazz 
  * @returns {string} 
  */
-export function ClassName(clazz: Function): string {
-    return clazz.toString().split('class')[1].split('{')[0].trim();
+export function ClassName(clazz: any): string {
+    return new clazz().constructor.name.toString();
 }

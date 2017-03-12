@@ -6,4 +6,4 @@ import { IViewDecorator } from './view.interface';
  * @param {IViewDecorator} config
  * @returns
  */
-export declare function View(config: IViewDecorator): <TFunction extends Function>(target: TFunction) => void;
+export declare function Component(config: IViewDecorator): <TFunction extends Function>(target: TFunction) => void;

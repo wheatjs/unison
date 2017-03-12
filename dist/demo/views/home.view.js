@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("../../index");
 const user_service_1 = require("../services/user.service");
 const authenticated_permission_1 = require("../permissions/authenticated.permission");
-let HomeView = class HomeView {
+let HomeComponent = class HomeComponent {
     constructor(userService) {
         this.userService = userService;
     }
@@ -28,6 +28,13 @@ let HomeView = class HomeView {
             message: this.userService.getUser()
         });
     }
+    HelloWorld(io, socket, data) {
+        console.log('testing');
+    }
+    connect(io, socket, data) {
+        socket.emit('established', 'Connection was established');
+        io.emit('established', 'Hello From IO');
+    }
 };
 __decorate([
     index_1.Route({ route: '/list', method: index_1.Method.POST }),
@@ -35,7 +42,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Object)
-], HomeView.prototype, "list", null);
+], HomeComponent.prototype, "list", null);
 __decorate([
     index_1.Permissions([authenticated_permission_1.Authenticated, authenticated_permission_1.Authenticated2]),
     index_1.RequiredBody(['username']),
@@ -43,9 +50,21 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Object)
-], HomeView.prototype, "create", null);
-HomeView = __decorate([
-    index_1.View({ base: '/api/home' }),
+], HomeComponent.prototype, "create", null);
+__decorate([
+    index_1.Socket('hello'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Object]),
+    __metadata("design:returntype", void 0)
+], HomeComponent.prototype, "HelloWorld", null);
+__decorate([
+    index_1.Socket('new'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Object]),
+    __metadata("design:returntype", void 0)
+], HomeComponent.prototype, "connect", null);
+HomeComponent = __decorate([
+    index_1.Component({ base: '/api/home' }),
     __metadata("design:paramtypes", [user_service_1.UserService])
-], HomeView);
-exports.HomeView = HomeView;
+], HomeComponent);
+exports.HomeComponent = HomeComponent;

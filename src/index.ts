@@ -1,7 +1,7 @@
 export { UnisonServer } from './bootstrap/bootstrap';
 export { UnisonApp } from './app/app.decorator';
 export { Route } from './view/route.decorator';
-export { View } from './view/view.decorator';
+export { Component } from './view/view.decorator';
 export { Injectable } from './dependency-injection/injectable.decorator';
 export { IPermission } from './permission/permission.interface';
 export { Permissions } from './permission/permissions.decorator';
@@ -10,3 +10,4 @@ export { RequiredBody } from './required/body.decorator';
 export { RequiredQuery } from './required/query.decorator';
 export { RequiredHeaders } from './required/headers.decorator';
 export { HTTPStatus } from './view/status-codes.object';
+export { Socket } from './socket/socket.decorator';

@@ -1,12 +1,16 @@
 import * as express from 'express';
 import * as chalk from 'chalk';
 import * as bodyParser from 'body-parser';
+import * as http from 'http';
+import * as https from 'https';
+import * as socketio from 'socket.io';
 import 'reflect-metadata';
 
 import { IServerConfig } from "../server/server-config.interface";
 import { IUnisonApp } from "../app/app.interface";
 import { Injector } from "../dependency-injection/dependency-injection";
 import { ViewRegister } from '../view/view';
+import { SocketRegister } from "../socket/socket";
 
 /**
  * Unison Web Server
@@ -19,6 +23,8 @@ export class UnisonServer {
     private application: express.Application;
     private metadata: IUnisonApp;
     private injectables: Object;
+    private server: http.Server;
+    private io: SocketIO.Server;
 
     constructor(
         private serverConfig: IServerConfig
@@ -31,7 +37,7 @@ export class UnisonServer {
      * 
      * @memberOf UnisonServer
      */
-    public bootstrap(unisonApp: Function): void {
+    public bootstrap(unisonApp: any): void {
 
         if (Reflect.hasMetadata('unison:app', unisonApp)) {
 
@@ -42,16 +48,26 @@ export class UnisonServer {
             this.application.use(bodyParser.urlencoded({ extended: false }));
             this.application.use(bodyParser.json());
 
+            this.server = http.createServer(this.application);
+            this.io = socketio(this.server);
+
             // Setup app injectables.
-            this.injectables = new Injector(this.metadata.services || []).getInjectables();
+            this.injectables = new Injector(this.metadata.injectables || []).getInjectables();
 
             // Setup application views.
-            let viewManager = new ViewRegister(this.metadata.views, this.injectables, this.application);
+            let viewManager = new ViewRegister(this.metadata.components, this.injectables, this.application);
+
+            let socketManager = new SocketRegister(this.metadata.components, this.injectables, this.io);
+
+            // Setup Socket.io
+            // this.io.on('connection', (socket) => {
+            //     console.log('Connected');
+            // });
 
             // Start the server.
-            this.application.listen(this.serverConfig.port, this.serverConfig.host, () => {
+            this.server.listen(this.serverConfig.port, this.serverConfig.host, () => {
                 console.log(chalk.bgGreen.black(`Listening on port ${this.serverConfig.port}`));
-            })
+            });
 
         } else {
             console.error(chalk.bgRed('Error: Bootstrapped application must be decorated with the @UnisonApp decorator.'))

@@ -8,6 +8,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @returns {string}
  */
 function ClassName(clazz) {
-    return clazz.toString().split('class')[1].split('{')[0].trim();
+    return new clazz().constructor.name.toString();
 }
 exports.ClassName = ClassName;

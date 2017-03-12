@@ -1,11 +1,11 @@
-import { View, Route, Method, Permissions, RequiredQuery, RequiredHeaders, RequiredBody } from '../../index';
+import { Component, Route, Method, Permissions, RequiredQuery, RequiredHeaders, RequiredBody, Socket } from '../../index';
 import { Request, Response } from 'express';
 
 import { UserService } from '../services/user.service';
 import { Authenticated, Authenticated2 } from '../permissions/authenticated.permission';
 
-@View({ base: '/api/home' })
-export class HomeView {
+@Component({ base: '/api/home' })
+export class HomeComponent {
 
     constructor(
         private userService: UserService
@@ -28,6 +28,17 @@ export class HomeView {
             success: true,
             message: this.userService.getUser()
         });
+    }
+
+    @Socket('hello')
+    public HelloWorld(io: SocketIO.Server, socket: SocketIO.Socket, data: any): void {
+        console.log('testing');
+    }
+
+    @Socket('new')
+    public connect(io: SocketIO.Server, socket: SocketIO.Socket, data: any): void {
+        socket.emit('established', 'Connection was established');
+        io.emit('established', 'Hello From IO');
     }
 
 }

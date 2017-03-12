@@ -7,9 +7,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @param {IViewDecorator} config
  * @returns
  */
-function View(config) {
+function Component(config) {
     return (target) => {
-        Reflect.defineMetadata('unison:view', config, target);
+        Reflect.defineMetadata('unison:component', config, target);
     };
 }
-exports.View = View;
+exports.Component = Component;

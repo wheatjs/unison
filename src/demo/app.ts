@@ -1,17 +1,17 @@
 import { UnisonApp, UnisonServer } from '../index';
 
-import { HomeView } from './views/home.view';
+import { HomeComponent } from './views/home.view';
 import { APIService } from './services/api.service';
 import { UserService } from './services/user.service';
 import { Authenticated, Authenticated2 } from './permissions/authenticated.permission';
 
 @UnisonApp({
 
-    views: [
-        HomeView
+    components: [
+        HomeComponent
     ],
 
-    services: [
+    injectables: [
         APIService,
         UserService,
         Authenticated,
@@ -19,6 +19,15 @@ import { Authenticated, Authenticated2 } from './permissions/authenticated.permi
     ]
 
 })
-class App { }
+class App { 
 
-new UnisonServer({ host: 'localhost', port: 8080 }).bootstrap(App);
+    constructor() {
+        console.log('App Launch');
+    }
+
+}
+
+new UnisonServer({ 
+    host: 'localhost', 
+    port: 8080 
+}).bootstrap(App);

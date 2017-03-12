@@ -7,7 +7,7 @@ const method_enum_1 = require("./method.enum");
 const required_1 = require("../required/required");
 const permissions_1 = require("../permission/permissions");
 /**
- * Registeres the view for the application.
+ * @description Registers application views.
  *
  * @export
  * @class ViewRegister
@@ -24,7 +24,7 @@ class ViewRegister {
     }
     register(view) {
         // Get the view metadata.
-        let metadata = Reflect.getMetadata('unison:view', view);
+        let metadata = Reflect.getMetadata('unison:component', view);
         // Loop through all the methods of the view.
         for (let method of Object.getOwnPropertyNames(Object.getPrototypeOf(new view))) {
             if (Reflect.hasMetadata('unison:route', new view(), method)) {
@@ -50,7 +50,7 @@ class ViewRegister {
                         new view(...dependencies)[method](request, response)
                             .catch(error => console.error(error));
                     })
-                        .catch(error => { console.error(error); });
+                        .catch(error => { });
                 });
                 this.logRoute(view_util_1.GenerateURI(metadata.base, routeMetadata.route), routeMetadata.method);
             }

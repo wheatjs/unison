@@ -1,7 +1,7 @@
 /// <reference types="express" />
 import { Application } from 'express';
 /**
- * Registeres the view for the application.
+ * @description Registers application views.
  *
  * @export
  * @class ViewRegister
