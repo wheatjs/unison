@@ -13,3 +13,9 @@ function Socket(command) {
     };
 }
 exports.Socket = Socket;
+function IO(event) {
+    return function (target, propertyKey, descriptor) {
+        Reflect.defineMetadata('unison:io', event, target, propertyKey);
+    };
+}
+exports.IO = IO;

@@ -10,3 +10,9 @@ export function Socket(command: string): any {
         Reflect.defineMetadata('unison:socket', command, target, propertyKey);
     };
 }
+
+export function IO(event: string): any {
+    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+        Reflect.defineMetadata('unison:io', event, target, propertyKey);
+    };
+}

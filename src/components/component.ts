@@ -2,8 +2,8 @@ import { Application, Request, Response } from 'express';
 import * as chalk from 'chalk';
 
 import { ClassName } from '../utils/general.util';
-import { IViewDecorator } from './view.interface';
-import { IRouteDecorator } from "./route.interface";
+import { IComponentDecorator } from './component.interface';
+import { IRouteDecorator } from "../route/route.interface";
 import { GenerateURI } from "../utils/view.util";
 import { MethodMap, Method } from "./method.enum";
 import { RequiredBody } from '../required/body.decorator';
@@ -18,7 +18,7 @@ import { Permissions } from "../permission/permissions";
  * @export
  * @class ViewRegister
  */
-export class ViewRegister {
+export class ComponentRegister {
 
     private registered: number = 0;
 
@@ -36,7 +36,7 @@ export class ViewRegister {
     private register(view: any): void {
 
         // Get the view metadata.
-        let metadata: IViewDecorator = Reflect.getMetadata('unison:component', view);
+        let metadata: IComponentDecorator = Reflect.getMetadata('unison:component', view);
 
         // Loop through all the methods of the view.
         for (let method of Object.getOwnPropertyNames(Object.getPrototypeOf(new view))) {
@@ -49,7 +49,7 @@ export class ViewRegister {
                 let permissions: Array<any> = Reflect.getMetadata('unison:permissions', new view(), method);
 
                 // Register the express routes.
-                this.application[MethodMap[routeMetadata.method]](GenerateURI(metadata.base, routeMetadata.route), (request: Request, response: Response) => {
+                this.application[MethodMap[routeMetadata.method || metadata.routes.method || Method.GET]](GenerateURI(metadata.routes.baseUrl || '', routeMetadata.route), (request: Request, response: Response) => {
 
                     let required = new Required().verify(request,
                         Reflect.getMetadata('unison:required-headers', new view(), method),
@@ -77,7 +77,7 @@ export class ViewRegister {
                         .catch(error => {});
                 });
 
-                this.logRoute(GenerateURI(metadata.base, routeMetadata.route), routeMetadata.method);
+                this.logRoute(GenerateURI(metadata.routes.baseUrl || '', routeMetadata.route), routeMetadata.method || metadata.routes.method);
 
             }
         }

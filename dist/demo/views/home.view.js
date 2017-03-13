@@ -28,8 +28,11 @@ let HomeComponent = class HomeComponent {
             message: this.userService.getUser()
         });
     }
+    connection(io, socket) {
+        console.log('A New User Connected');
+    }
     HelloWorld(io, socket, data) {
-        console.log('testing');
+        console.log('On Disconnected');
     }
     connect(io, socket, data) {
         socket.emit('established', 'Connection was established');
@@ -37,7 +40,7 @@ let HomeComponent = class HomeComponent {
     }
 };
 __decorate([
-    index_1.Route({ route: '/list', method: index_1.Method.POST }),
+    index_1.Route({ route: '/list' }),
     index_1.Permissions([authenticated_permission_1.Authenticated]),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
@@ -52,7 +55,13 @@ __decorate([
     __metadata("design:returntype", Object)
 ], HomeComponent.prototype, "create", null);
 __decorate([
-    index_1.Socket('hello'),
+    index_1.IO('connection'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", void 0)
+], HomeComponent.prototype, "connection", null);
+__decorate([
+    index_1.Socket('disconnect'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object, Object]),
     __metadata("design:returntype", void 0)
@@ -64,7 +73,12 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], HomeComponent.prototype, "connect", null);
 HomeComponent = __decorate([
-    index_1.Component({ base: '/api/home' }),
+    index_1.Component({
+        routes: {
+            baseUrl: '/api/home',
+            method: index_1.Method.PUT
+        }
+    }),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;

@@ -9,7 +9,7 @@ import 'reflect-metadata';
 import { IServerConfig } from "../server/server-config.interface";
 import { IUnisonApp } from "../app/app.interface";
 import { Injector } from "../dependency-injection/dependency-injection";
-import { ViewRegister } from '../view/view';
+import { ComponentRegister } from '../components/component';
 import { SocketRegister } from "../socket/socket";
 
 /**
@@ -54,15 +54,11 @@ export class UnisonServer {
             // Setup app injectables.
             this.injectables = new Injector(this.metadata.injectables || []).getInjectables();
 
-            // Setup application views.
-            let viewManager = new ViewRegister(this.metadata.components, this.injectables, this.application);
+            // Setup application components.
+            let viewManager = new ComponentRegister(this.metadata.components, this.injectables, this.application);
 
+            // Setup socket.io
             let socketManager = new SocketRegister(this.metadata.components, this.injectables, this.io);
-
-            // Setup Socket.io
-            // this.io.on('connection', (socket) => {
-            //     console.log('Connected');
-            // });
 
             // Start the server.
             this.server.listen(this.serverConfig.port, this.serverConfig.host, () => {

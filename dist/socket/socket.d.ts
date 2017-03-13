@@ -10,7 +10,9 @@ export declare class SocketRegister {
     private injectables;
     private io;
     private commandRegister;
+    private ioRegister;
     constructor(components: Array<any>, injectables: Object, io: SocketIO.Server);
     private initialize();
+    private initializeIO();
     private register();
 }

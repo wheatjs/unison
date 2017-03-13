@@ -7,6 +7,7 @@ export declare class HomeComponent {
     constructor(userService: UserService);
     list(req: Request, res: Response): Response;
     create(req: Request, res: Response): Response;
+    connection(io: SocketIO.Server, socket: SocketIO.Socket): void;
     HelloWorld(io: SocketIO.Server, socket: SocketIO.Socket, data: any): void;
     connect(io: SocketIO.Server, socket: SocketIO.Socket, data: any): void;
 }

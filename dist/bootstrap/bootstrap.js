@@ -7,7 +7,7 @@ const http = require("http");
 const socketio = require("socket.io");
 require("reflect-metadata");
 const dependency_injection_1 = require("../dependency-injection/dependency-injection");
-const view_1 = require("../view/view");
+const component_1 = require("../components/component");
 const socket_1 = require("../socket/socket");
 /**
  * Unison Web Server
@@ -37,13 +37,10 @@ class UnisonServer {
             this.io = socketio(this.server);
             // Setup app injectables.
             this.injectables = new dependency_injection_1.Injector(this.metadata.injectables || []).getInjectables();
-            // Setup application views.
-            let viewManager = new view_1.ViewRegister(this.metadata.components, this.injectables, this.application);
+            // Setup application components.
+            let viewManager = new component_1.ComponentRegister(this.metadata.components, this.injectables, this.application);
+            // Setup socket.io
             let socketManager = new socket_1.SocketRegister(this.metadata.components, this.injectables, this.io);
-            // Setup Socket.io
-            // this.io.on('connection', (socket) => {
-            //     console.log('Connected');
-            // });
             // Start the server.
             this.server.listen(this.serverConfig.port, this.serverConfig.host, () => {
                 console.log(chalk.bgGreen.black(`Listening on port ${this.serverConfig.port}`));
