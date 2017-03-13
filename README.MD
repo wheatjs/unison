@@ -30,9 +30,10 @@ Unison allows you to easily create RESTful web services. It provides support for
 * Add permissions for sockets.
 * Add permissions to components for routes and sockets.
 
+
 ## App
 
-To create a unison app, you will need to create a class and decorate it with the `@UnisonApp` decorator. You will then need to bootstrap the app using the `UnisonServer` class. When creating the server you will need to pass in a configuraiton that includes the `port` and `host`. In the furutre you will also enable `https` through this configuraiton.
+To create a unison app, you will need to create a class and decorate it with the `@UnisonApp` decorator. You will then need to bootstrap the app using the `UnisonServer` class. When creating the server you will need to pass in a configuration that includes the `port` and `host`. In the future you will also enable `https` through this configuration.
 
 In the `@UnisonApp` decorator you will pass application components into the `components` array and injectables into the `injectables` array.
 
@@ -159,7 +160,7 @@ export class Authenticated implements IPermission {
 
 #### Required Headers
 
-The `@RequiredHeaders` decorator can be applied to routes. It will ensure that routes have certian headers otherwise it will reject the requset and return and error as a response.
+The `@RequiredHeaders` decorator can be applied to routes. It will ensure that routes have certian headers, otherwise it will reject the request and return an error as a response.
 
 ````typescript
 import { Route, RequiredHeaders } from 'unison-server';
@@ -177,7 +178,7 @@ import { Route, RequiredHeaders } from 'unison-server';
 
 #### Required Body
 
-The `@RequiredBody` decorator can be applied to routes. It will ensure that routes have certian body parameters otherwise it will reject the requset and return and error as a response.
+The `@RequiredBody` decorator can be applied to routes. It will ensure that routes have certian body parameters otherwise it will reject the request and return and error as a response.
 
 ````typescript
 import { Route, RequiredBody } from 'unison-server';
@@ -195,7 +196,7 @@ import { Route, RequiredBody } from 'unison-server';
 
 #### Required Query
 
-The `@RequiredQuery` decorator can be applied to routes. It will ensure that routes have certian query parameters otherwise it will reject the requset and return and error as a response.
+The `@RequiredQuery` decorator can be applied to routes. It will ensure that routes have certain query parameters otherwise it will reject the request and return and error as a response.
 
 ````typescript
 import { Route, RequiredQuery } from 'unison-server';
