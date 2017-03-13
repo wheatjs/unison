@@ -8,7 +8,11 @@ export class PermissionsHandler {
         if (permissions !== undefined && permissions.length > 0) {
             for (let permission of permissions) {
                 try {
-                    await injectables[ClassName(permission)]['check'](request, response);
+                    let res = await injectables[ClassName(permission)]['check'](request, response);
+
+                    if (res === false)
+                        throw new Error('Rejected');
+
                 } catch (error) {
                     injectables[ClassName(permission)]['reject'](request, response);
                     return Promise.reject(error);

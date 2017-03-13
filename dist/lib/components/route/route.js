@@ -33,8 +33,14 @@ class RouteRegister {
                 if (Reflect.hasMetadata('unison:route', new component(), method)) {
                     // Get the route metadata.
                     let routeMetadata = Reflect.getMetadata('unison:route', new component(), method);
+                    let permissions = [];
                     // Get the route permissions.
                     let routePermissions = Reflect.getMetadata('unison:permissions', new component(), method);
+                    if (metadata.routes !== undefined && metadata.routes.permissions !== undefined)
+                        permissions.push(...metadata.routes.permissions);
+                    if (routePermissions !== undefined)
+                        permissions.push(...routePermissions);
+                    console.log(permissions);
                     // Generate the method that the route will use.
                     let defaultMethod = (routeMetadata.method || metadata.routes.method || 'get');
                     // Generate the uri that the route will use.
@@ -48,7 +54,7 @@ class RouteRegister {
                                 .status(index_2.Status.ClientError.BadRequest)
                                 .json(required);
                         new index_1.PermissionsHandler()
-                            .verify(request, response, routePermissions, this.injectables)
+                            .verify(request, response, permissions, this.injectables)
                             .then(success => {
                             let dependencies = [];
                             if (Reflect.getMetadata('design:paramtypes', component) !== undefined &&

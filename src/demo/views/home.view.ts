@@ -7,7 +7,8 @@ import { Authenticated, Authenticated2 } from '../permissions/authenticated.perm
 @Component({ 
     routes: { 
         baseUrl: '/api/home', 
-        method: Method.PUT
+        method: Method.PUT,
+        permissions: [Authenticated]
     } 
 })
 export class HomeComponent {
@@ -17,7 +18,6 @@ export class HomeComponent {
     ) { }
 
     @Route({ route: '/list' })
-    @Permissions([Authenticated])
     public list(req: Request, res: Response): Response {
         return res.send({
             success: true,

@@ -15,7 +15,9 @@ class PermissionsHandler {
             if (permissions !== undefined && permissions.length > 0) {
                 for (let permission of permissions) {
                     try {
-                        yield injectables[utils_1.ClassName(permission)]['check'](request, response);
+                        let res = yield injectables[utils_1.ClassName(permission)]['check'](request, response);
+                        if (res === false)
+                            throw new Error('Rejected');
                     }
                     catch (error) {
                         injectables[utils_1.ClassName(permission)]['reject'](request, response);

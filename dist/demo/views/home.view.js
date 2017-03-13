@@ -41,7 +41,6 @@ let HomeComponent = class HomeComponent {
 };
 __decorate([
     index_1.Route({ route: '/list' }),
-    index_1.Permissions([authenticated_permission_1.Authenticated]),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Object)
@@ -76,7 +75,8 @@ HomeComponent = __decorate([
     index_1.Component({
         routes: {
             baseUrl: '/api/home',
-            method: index_1.Method.PUT
+            method: index_1.Method.PUT,
+            permissions: [authenticated_permission_1.Authenticated2]
         }
     }),
     __metadata("design:paramtypes", [user_service_1.UserService])

@@ -16,6 +16,8 @@
         * [IO](#io)
         * [Socket](#socket)
 * [Injectables (Dependency Injection)](#injectables)
+    * [Creating Injectables](#creating-injectables)
+    * [Using Injectables](#using-injectables)
 
 * [Install](#install)
 * [Contributing](#contributing)
@@ -67,7 +69,8 @@ import { Component, Method } from 'unison-server';
 @Component({ 
     routes: {
         baseUrl: '',
-        method: Method.GET
+        method: Method.GET,
+        permissions: []
     }, 
     sockets: {} 
 })
@@ -111,7 +114,7 @@ export class AppComponent {
 
 **Using Permissions**
 
-Permissions act like guards for routes. You can define as many permissions as you want to a route using the `@Permissions` decorator. 
+Permissions act like guards for routes. You can define as many permissions as you want to a route using the `@Permissions` decorator or in the route config in the `@Component` decorator. 
 
 ````typescript
 import { Component, Route, Method, Permissions } from 'unison-server';
@@ -250,9 +253,10 @@ import { Socket } from 'unison-server';
 
 
 ## Injectables
-Unison server provides a very basic implementation of dependency injection. To create an injectable, decorator a class with the `@Injectable()` decorator. Then you will need to register it in the `injectables` array inside of the `@UnisonApp` decorator.
+Unison server provides a very basic implementation of dependency injection. 
 
-**Creating and Injectable**
+#### Creating Injectables
+To create an injectable, decorator a class with the `@Injectable()` decorator. Then you will need to register it in the `injectables` array inside of the `@UnisonApp` decorator.
 
 ````typescript
 import { Injectable } from 'unison-server';
@@ -263,7 +267,7 @@ export class SomeService {
 }
 ````
 
-**Using Injectables**
+#### Using Injectables
 
 Injectables can be used inside of `components` or other `injectables`. To inject an injectable into another injectable or component, create a parameter in the constructor of the target class and add the type of your injectable.
 

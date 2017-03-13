@@ -45,9 +45,19 @@ export class RouteRegister {
                     let routeMetadata: IRouteDecorator
                         = Reflect.getMetadata('unison:route', new component(), method);
 
+                    let permissions = [];
+
                     // Get the route permissions.
                     let routePermissions: Array<any>
                         = Reflect.getMetadata('unison:permissions', new component(), method);
+
+                    if (metadata.routes !== undefined && metadata.routes.permissions !== undefined)
+                        permissions.push(...metadata.routes.permissions);
+
+                    if (routePermissions !== undefined)
+                        permissions.push(...routePermissions);
+                        
+                    console.log(permissions);
 
                     // Generate the method that the route will use.
                     let defaultMethod
@@ -71,7 +81,7 @@ export class RouteRegister {
                                 .json(required);
 
                         new PermissionsHandler()
-                            .verify(request, response, routePermissions, this.injectables)
+                            .verify(request, response, permissions, this.injectables)
                             .then(success => {
                                 let dependencies = [];
 

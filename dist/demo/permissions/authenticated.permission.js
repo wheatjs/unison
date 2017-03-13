@@ -30,7 +30,7 @@ exports.Authenticated = Authenticated;
 let Authenticated2 = class Authenticated2 {
     constructor() { }
     check(req, res) {
-        return Promise.reject('some error');
+        return true;
     }
     reject(req, res) {
         return res.send({

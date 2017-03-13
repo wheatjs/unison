@@ -25,7 +25,7 @@ export class Authenticated2 implements IPermission {
     constructor() { }
 
     public check(req: Request, res: Response): boolean | Promise<any> {
-        return Promise.reject('some error');
+        return false;
     }
 
     public reject(req: Request, res: Response): Response {
