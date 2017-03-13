@@ -4,6 +4,7 @@ import * as bodyParser from 'body-parser';
 import * as http from 'http';
 import * as https from 'https';
 import * as socketio from 'socket.io';
+import * as fs from 'fs';
 import 'reflect-metadata';
 
 import { IServerConfig } from '../server/server-config.interface';
@@ -23,7 +24,7 @@ export class UnisonServer {
     private application: express.Application;
     private metadata: IUnisonApp;
     private injectables: Object;
-    private server: http.Server;
+    private server: http.Server | https.Server;
     private io: SocketIO.Server;
 
     constructor(
@@ -48,7 +49,15 @@ export class UnisonServer {
             this.application.use(bodyParser.urlencoded({ extended: false }));
             this.application.use(bodyParser.json());
 
-            this.server = http.createServer(this.application);
+            // Create either http or https server.
+
+            if (this.serverConfig.https !== undefined && this.serverConfig.https.enabled) {
+                this.server 
+                    = https.createServer(this.serverConfig.https.options, this.application);
+            } else {
+                this.server = http.createServer(this.application);
+            }
+
             this.io = socketio(this.server);
 
             // Setup app injectables.

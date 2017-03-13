@@ -1,8 +1,8 @@
 {
   "name": "unison-server",
-  "version": "0.1.9",
+  "version": "0.2.1",
   "description": "A Typescript based web server built on express with support for basic dependency injection.",
-  "main": "./dist/lib/index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "demo": "node ./dist/demo/app.js",
     "test": "mocha test ./dist/test"
@@ -13,7 +13,7 @@
   },
   "author": "Jacob Clevenger <jacobrclevenger@gmail.com>",
   "license": "MIT",
-  "typings": "./dist/lib/index",
+  "typings": "./dist/index",
   "keywords": [
     "express",
     "typescript",

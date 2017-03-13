@@ -4,6 +4,7 @@ const express = require("express");
 const chalk = require("chalk");
 const bodyParser = require("body-parser");
 const http = require("http");
+const https = require("https");
 const socketio = require("socket.io");
 require("reflect-metadata");
 const dependency_injection_1 = require("../dependency-injection/dependency-injection");
@@ -32,7 +33,14 @@ class UnisonServer {
             this.application = express();
             this.application.use(bodyParser.urlencoded({ extended: false }));
             this.application.use(bodyParser.json());
-            this.server = http.createServer(this.application);
+            // Create either http or https server.
+            if (this.serverConfig.https !== undefined && this.serverConfig.https.enabled) {
+                this.server
+                    = https.createServer(this.serverConfig.https.options, this.application);
+            }
+            else {
+                this.server = http.createServer(this.application);
+            }
             this.io = socketio(this.server);
             // Setup app injectables.
             this.injectables = new dependency_injection_1.Injector(this.metadata.injectables || []).getInjectables();

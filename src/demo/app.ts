@@ -29,5 +29,11 @@ class App {
 
 new UnisonServer({ 
     host: 'localhost', 
-    port: 8080 
+    port: 8080,
+    https: {
+        enabled: false,
+        options: {
+
+        }
+    }
 }).bootstrap(App);

@@ -35,5 +35,9 @@ App = __decorate([
 ], App);
 new index_1.UnisonServer({
     host: 'localhost',
-    port: 8080
+    port: 8080,
+    https: {
+        enabled: false,
+        options: {}
+    }
 }).bootstrap(App);
