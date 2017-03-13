@@ -6,10 +6,8 @@ export class Authenticated implements IPermission {
 
     constructor() { }
 
-    public check(req: Request, res: Response): boolean | Promise<boolean> {
-        return new Promise((resolve, reject) => {
-            return resolve(true);
-        });
+    public check(req: Request, res: Response): Promise<any> {
+        return Promise.resolve();
     }
 
     public reject(req: Request, res: Response): Response {
@@ -26,10 +24,8 @@ export class Authenticated2 implements IPermission {
 
     constructor() { }
 
-    public check(req: Request, res: Response): boolean | Promise<boolean> {
-        return new Promise((resolve, reject) => {
-            return resolve(false);
-        });
+    public check(req: Request, res: Response): boolean | Promise<any> {
+        return Promise.reject('some error');
     }
 
     public reject(req: Request, res: Response): Response {

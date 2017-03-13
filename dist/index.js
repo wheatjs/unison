@@ -1,27 +1,27 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var bootstrap_1 = require("./bootstrap/bootstrap");
+// Bootstrap
+var bootstrap_1 = require("./lib/bootstrap/bootstrap");
 exports.UnisonServer = bootstrap_1.UnisonServer;
-var app_decorator_1 = require("./app/app.decorator");
-exports.UnisonApp = app_decorator_1.UnisonApp;
-var route_decorator_1 = require("./route/route.decorator");
-exports.Route = route_decorator_1.Route;
-var component_decorator_1 = require("./components/component.decorator");
-exports.Component = component_decorator_1.Component;
-var injectable_decorator_1 = require("./dependency-injection/injectable.decorator");
-exports.Injectable = injectable_decorator_1.Injectable;
-var permissions_decorator_1 = require("./permission/permissions.decorator");
-exports.Permissions = permissions_decorator_1.Permissions;
-var method_enum_1 = require("./components/method.enum");
-exports.Method = method_enum_1.Method;
-var body_decorator_1 = require("./required/body.decorator");
-exports.RequiredBody = body_decorator_1.RequiredBody;
-var query_decorator_1 = require("./required/query.decorator");
-exports.RequiredQuery = query_decorator_1.RequiredQuery;
-var headers_decorator_1 = require("./required/headers.decorator");
-exports.RequiredHeaders = headers_decorator_1.RequiredHeaders;
-var status_codes_object_1 = require("./components/status-codes.object");
-exports.Status = status_codes_object_1.Status;
-var socket_decorator_1 = require("./socket/socket.decorator");
-exports.Socket = socket_decorator_1.Socket;
-exports.IO = socket_decorator_1.IO;
+// App
+var app_1 = require("./lib/app");
+exports.UnisonApp = app_1.UnisonApp;
+// Components
+var components_1 = require("./lib/components");
+exports.Component = components_1.Component;
+var route_1 = require("./lib/components/route");
+exports.Route = route_1.Route;
+exports.Permissions = route_1.Permissions;
+exports.RequiredBody = route_1.RequiredBody;
+exports.RequiredHeaders = route_1.RequiredHeaders;
+exports.RequiredQuery = route_1.RequiredQuery;
+var socket_1 = require("./lib/components/socket");
+exports.IO = socket_1.IO;
+exports.Socket = socket_1.Socket;
+// Injectables
+var dependency_injection_1 = require("./lib/dependency-injection");
+exports.Injectable = dependency_injection_1.Injectable;
+// HTTP
+var http_1 = require("./lib/http");
+exports.Method = http_1.Method;
+exports.Status = http_1.Status;

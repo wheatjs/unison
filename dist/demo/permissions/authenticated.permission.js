@@ -13,9 +13,7 @@ const index_1 = require("../../index");
 let Authenticated = class Authenticated {
     constructor() { }
     check(req, res) {
-        return new Promise((resolve, reject) => {
-            return resolve(true);
-        });
+        return Promise.resolve();
     }
     reject(req, res) {
         return res.send({
@@ -32,9 +30,7 @@ exports.Authenticated = Authenticated;
 let Authenticated2 = class Authenticated2 {
     constructor() { }
     check(req, res) {
-        return new Promise((resolve, reject) => {
-            return resolve(false);
-        });
+        return Promise.reject('some error');
     }
     reject(req, res) {
         return res.send({

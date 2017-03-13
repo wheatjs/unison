@@ -2,9 +2,10 @@
   "name": "unison-server",
   "version": "0.1.9",
   "description": "A Typescript based web server built on express with support for basic dependency injection.",
-  "main": "./dist/index.js",
+  "main": "./dist/lib/index.js",
   "scripts": {
-    "demo": "node ./dist/demo/app.js"
+    "demo": "node ./dist/demo/app.js",
+    "test": "mocha test ./dist/test"
   },
   "repository": {
     "url": "https://github.com/jacobclevenger/unison.git",
@@ -12,7 +13,7 @@
   },
   "author": "Jacob Clevenger <jacobrclevenger@gmail.com>",
   "license": "MIT",
-  "typings": "./dist/index",
+  "typings": "./dist/lib/index",
   "keywords": [
     "express",
     "typescript",
@@ -27,8 +28,10 @@
     "@types/node": "^7.0.5",
     "@types/socket.io": "^1.4.28",
     "body-parser": "^1.16.1",
+    "chai": "^3.5.0",
     "chalk": "^1.1.3",
     "express": "^4.14.1",
+    "mocha": "^3.2.0",
     "reflect-metadata": "^0.1.10",
     "socket.io": "^1.7.3"
   }

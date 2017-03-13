@@ -1,13 +1,16 @@
-export { UnisonServer } from './bootstrap/bootstrap';
-export { UnisonApp } from './app/app.decorator';
-export { Route } from './route/route.decorator';
-export { Component } from './components/component.decorator';
-export { Injectable } from './dependency-injection/injectable.decorator';
-export { IPermission } from './permission/permission.interface';
-export { Permissions } from './permission/permissions.decorator';
-export { Method } from './components/method.enum';
-export { RequiredBody } from './required/body.decorator';
-export { RequiredQuery } from './required/query.decorator';
-export { RequiredHeaders } from './required/headers.decorator';
-export { Status } from './components/status-codes.object';
-export { Socket, IO } from './socket/socket.decorator';
+// Bootstrap
+export { UnisonServer } from './lib/bootstrap/bootstrap';
+
+// App
+export { UnisonApp } from './lib/app';
+
+// Components
+export { Component } from './lib/components';
+export { Route, Permissions, IPermission, RequiredBody, RequiredHeaders, RequiredQuery } from './lib/components/route';
+export { IO, Socket } from './lib/components/socket';
+
+// Injectables
+export { Injectable } from './lib/dependency-injection';
+
+// HTTP
+export { Method, Status } from './lib/http';
