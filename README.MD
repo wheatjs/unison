@@ -33,7 +33,7 @@ Unison allows you to easily create RESTful web services. It provides support for
 
 ## App
 
-To create a unison app, you will need to create a class and decorate it with the `@UnisonApp` decorator. You will then need to bootstrap the app using the `UnisonServer` class. When creating the server you will need to pass in a configuration that includes the `port` and `host`. In the future you will also enable `https` through this configuration.
+To create a unison app, you will need to create a class and decorate it with the `@UnisonApp` decorator. You will then need to bootstrap the app using the `UnisonServer` class. When creating the server you will need to pass in a configuration that includes the `port` and `host`. In the future, you will also enable `https` through this configuration.
 
 In the `@UnisonApp` decorator you will pass application components into the `components` array and injectables into the `injectables` array.
 
@@ -73,11 +73,11 @@ import { Component, Method } from 'unison-server';
 })
 export class AppComponent {}
 ````
-
 ### Routes
-Routes must be defined inside of a `@Component`. Inside of a route configuration you can define the `route` and `method`. If a `routeUrl` is defined on the component, the route will extend the component route. If no method is defined, then the method defined on the component will be used. If no method is defined on the component, then the `GET` method will be used as a default.
 
-To create a route, decorate a `@Component` method with the `@Route` decorator. When doing this, your method will recieve two different parameters, `request` and `response`. The `request` and `response` parameters are from express.
+Routes must be defined inside of a `@Component`. Inside of a route configuration, you can define the `route` and `method`. If a `routeUrl` is defined on the component, the route will extend the component route. If no method is defined, then the method defined on the component will be used. If no method is defined on the component, then the `GET` method will be used as a default.
+
+To create a route, decorate a `@Component` method with the `@Route` decorator. When doing this, your method will receive two different parameters, `request` and `response`. The `request` and `response` parameters are from express.
 
 ````typescript
 import { Component, Route, Method } from 'unison-server';
@@ -132,7 +132,7 @@ import { Authenticated } from '~/permissions/authenticated';
 
 **Creating Permissions**
 
-To create a permission, you will need to create a class and decorate it with the `@Injectable` decorator. Then you will need to have it implement the `IPermission` interface. The `check` method will be where you will implement your permission. It will receive two different parameters, `request` and `response`. The `request` and `response` parameters are from express. It should return either a boolen or a promise with a boolean. The `reject` method will be called when the permissions returns a rejection.
+To create a permission, you will need to create a class and decorate it with the `@Injectable` decorator. Then you will need to have it implement the `IPermission` interface. The `check` method will be where you will implement your permission. It will receive two different parameters, `request` and `response`. The `request` and `response` parameters are from express. It should return either a boolean or a promise with a boolean. The `reject` method will be called when the permissions returns a rejection.
 
 ````typescript
 import { Injectable, IPermission } from 'unison-server';
@@ -160,7 +160,7 @@ export class Authenticated implements IPermission {
 
 #### Required Headers
 
-The `@RequiredHeaders` decorator can be applied to routes. It will ensure that routes have certian headers, otherwise it will reject the request and return an error as a response.
+The `@RequiredHeaders` decorator can be applied to routes. It will ensure that routes have certain headers, otherwise, it will reject the request and return an error as a response.
 
 ````typescript
 import { Route, RequiredHeaders } from 'unison-server';
@@ -178,7 +178,7 @@ import { Route, RequiredHeaders } from 'unison-server';
 
 #### Required Body
 
-The `@RequiredBody` decorator can be applied to routes. It will ensure that routes have certian body parameters otherwise it will reject the request and return and error as a response.
+The `@RequiredBody` decorator can be applied to routes. It will ensure that routes have certain body parameters otherwise, it will reject the request and return and error as a response.
 
 ````typescript
 import { Route, RequiredBody } from 'unison-server';
@@ -193,10 +193,9 @@ import { Route, RequiredBody } from 'unison-server';
 
 ...
 ````
-
 #### Required Query
 
-The `@RequiredQuery` decorator can be applied to routes. It will ensure that routes have certain query parameters otherwise it will reject the request and return and error as a response.
+The `@RequiredQuery` decorator can be applied to routes. It will ensure that routes have certain query parameters otherwise, it will reject the request and return and error as a response.
 
 ````typescript
 import { Route, RequiredQuery } from 'unison-server';
@@ -265,7 +264,8 @@ export class SomeService {
 ````
 
 **Using Injectables**
-You can use an injectable in components or other injectables. It probably isn't a good idea to make a two injectables depend on each other though, it probably won't go well. To have classes injected, you will need to add them as parameter arguments and include the type of the class you want to include.
+
+Injectables can be used inside of `components` or other `injectables`. To inject an injectable into another injectable or component, create a parameter in the constructor of the target class and add the type of your injectable.
 
 ````typescript
 import { Injectable, Component } from 'unison-server';
