@@ -1,4 +1,4 @@
-![alt text](./assets/logo.svg "Unison Server Logo")
+![Unison](https://cdn.rawgit.com/jacobclevenger/unison/4e9f0300/assets/logo.svg "Unison Server Logo")
 
 > Unison Server is still under development. API's are subject to change and is not guaranteed to be stable.
 
