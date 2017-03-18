@@ -40,7 +40,6 @@ class RouteRegister {
                         permissions.push(...metadata.routes.permissions);
                     if (routePermissions !== undefined)
                         permissions.push(...routePermissions);
-                    console.log(permissions);
                     // Generate the method that the route will use.
                     let defaultMethod = (routeMetadata.method || metadata.routes.method || 'get');
                     // Generate the uri that the route will use.
@@ -63,7 +62,7 @@ class RouteRegister {
                                     dependencies.push(this.injectables[utils_1.ClassName(dependency)]);
                             }
                             new component(...dependencies)[method](request, response)
-                                .catch(error => { console.error(error); });
+                                .catch(error => { });
                         })
                             .catch(error => { });
                     });

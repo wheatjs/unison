@@ -76,7 +76,7 @@ HomeComponent = __decorate([
         routes: {
             baseUrl: '/api/home',
             method: index_1.Method.PUT,
-            permissions: [authenticated_permission_1.Authenticated2]
+            permissions: [authenticated_permission_1.Authenticated]
         }
     }),
     __metadata("design:paramtypes", [user_service_1.UserService])

@@ -5,6 +5,7 @@ import * as http from 'http';
 import * as https from 'https';
 import * as socketio from 'socket.io';
 import * as fs from 'fs';
+import * as cors from 'cors';
 import 'reflect-metadata';
 
 import { IServerConfig } from '../server/server-config.interface';
@@ -48,6 +49,7 @@ export class UnisonServer {
             this.application = express();
             this.application.use(bodyParser.urlencoded({ extended: false }));
             this.application.use(bodyParser.json());
+            this.application.use(cors({ origin: '*' }));
 
             // Create either http or https server.
 

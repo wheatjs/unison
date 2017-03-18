@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const http = require("http");
 const https = require("https");
 const socketio = require("socket.io");
+const cors = require("cors");
 require("reflect-metadata");
 const dependency_injection_1 = require("../dependency-injection/dependency-injection");
 const component_1 = require("../components/component");
@@ -33,6 +34,7 @@ class UnisonServer {
             this.application = express();
             this.application.use(bodyParser.urlencoded({ extended: false }));
             this.application.use(bodyParser.json());
+            this.application.use(cors({ origin: '*' }));
             // Create either http or https server.
             if (this.serverConfig.https !== undefined && this.serverConfig.https.enabled) {
                 this.server
