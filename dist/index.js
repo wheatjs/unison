@@ -18,9 +18,11 @@ exports.RequiredQuery = route_1.RequiredQuery;
 var socket_1 = require("./lib/components/socket");
 exports.IO = socket_1.IO;
 exports.Socket = socket_1.Socket;
+exports.SocketIOServer = socket_1.SocketIOServer;
 // Injectables
 var dependency_injection_1 = require("./lib/dependency-injection");
 exports.Injectable = dependency_injection_1.Injectable;
+exports.Inject = dependency_injection_1.Inject;
 // HTTP
 var http_1 = require("./lib/http");
 exports.Method = http_1.Method;

@@ -12,7 +12,12 @@ export class Injector {
 
     constructor(injectables: Array<any>) {
         for (let injectable of injectables)
-            this.resolve(injectable);
+            if (injectable.use !== undefined && injectable.inject !== undefined)
+                this.container[ClassName(injectable.inject)] = injectable.use;
+
+        for (let injectable of injectables)
+            if (injectable.use === undefined && injectable.inject === undefined)
+                this.resolve(injectable);
     }
 
     /**

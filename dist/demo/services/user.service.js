@@ -12,15 +12,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("../../index");
 const api_service_1 = require("./api.service");
 let UserService = class UserService {
-    constructor(apiService) {
+    constructor(apiService, io) {
         this.apiService = apiService;
+        this.io = io;
     }
     getUser() {
+        this.io.emit('new post');
         return this.apiService.test('HELLO WORLD');
     }
 };
 UserService = __decorate([
     index_1.Injectable(),
-    __metadata("design:paramtypes", [api_service_1.APIService])
+    __metadata("design:paramtypes", [api_service_1.APIService,
+        index_1.SocketIOServer])
 ], UserService);
 exports.UserService = UserService;

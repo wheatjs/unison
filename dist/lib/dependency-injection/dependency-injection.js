@@ -11,7 +11,11 @@ class Injector {
     constructor(injectables) {
         this.container = {};
         for (let injectable of injectables)
-            this.resolve(injectable);
+            if (injectable.use !== undefined && injectable.inject !== undefined)
+                this.container[general_util_1.ClassName(injectable.inject)] = injectable.use;
+        for (let injectable of injectables)
+            if (injectable.use === undefined && injectable.inject === undefined)
+                this.resolve(injectable);
     }
     /**
      * Gets the injectable dependencies.

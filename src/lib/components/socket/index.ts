@@ -1,1 +1,1 @@
-export { IO, Socket } from './socket.decorator';
+export { IO, Socket, SocketIOServer } from './socket.decorator';

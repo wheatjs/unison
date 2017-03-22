@@ -13,8 +13,9 @@ const index_1 = require("../../index");
 const user_service_1 = require("../services/user.service");
 const authenticated_permission_1 = require("../permissions/authenticated.permission");
 let HomeComponent = class HomeComponent {
-    constructor(userService) {
+    constructor(userService, io) {
         this.userService = userService;
+        this.io = io;
     }
     list(req, res) {
         return res.send({
@@ -79,6 +80,7 @@ HomeComponent = __decorate([
             permissions: [authenticated_permission_1.Authenticated]
         }
     }),
-    __metadata("design:paramtypes", [user_service_1.UserService])
+    __metadata("design:paramtypes", [user_service_1.UserService,
+        index_1.SocketIOServer])
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;

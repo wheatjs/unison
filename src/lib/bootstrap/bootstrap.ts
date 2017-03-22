@@ -13,6 +13,7 @@ import { IUnisonApp } from '../app/app.interface';
 import { Injector } from '../dependency-injection/dependency-injection';
 import { ComponentRegister } from '../components/component';
 import { SocketRegister } from '../components/socket/socket';
+import { SocketIOServer } from '../components/socket';
 
 /**
  * Unison Web Server
@@ -63,6 +64,7 @@ export class UnisonServer {
             this.io = socketio(this.server);
 
             // Setup app injectables.
+            this.metadata.injectables.push({ inject: SocketIOServer, use: this.io })
             this.injectables = new Injector(this.metadata.injectables || []).getInjectables();
 
             let componentRegister = new ComponentRegister(

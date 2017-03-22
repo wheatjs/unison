@@ -10,6 +10,7 @@ const cors = require("cors");
 require("reflect-metadata");
 const dependency_injection_1 = require("../dependency-injection/dependency-injection");
 const component_1 = require("../components/component");
+const socket_1 = require("../components/socket");
 /**
  * Unison Web Server
  *
@@ -45,6 +46,7 @@ class UnisonServer {
             }
             this.io = socketio(this.server);
             // Setup app injectables.
+            this.metadata.injectables.push({ inject: socket_1.SocketIOServer, use: this.io });
             this.injectables = new dependency_injection_1.Injector(this.metadata.injectables || []).getInjectables();
             let componentRegister = new component_1.ComponentRegister(this.metadata.components, this.injectables, this.application, this.io);
             // Start the server.

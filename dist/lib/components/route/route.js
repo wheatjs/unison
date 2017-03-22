@@ -56,8 +56,7 @@ class RouteRegister {
                             .verify(request, response, permissions, this.injectables)
                             .then(success => {
                             let dependencies = [];
-                            if (Reflect.getMetadata('design:paramtypes', component) !== undefined &&
-                                Reflect.getMetadata('design:paramtypes', component).length > 0) {
+                            if (Reflect.hasMetadata('design:paramtypes', component)) {
                                 for (let dependency of Reflect.getMetadata('design:paramtypes', component))
                                     dependencies.push(this.injectables[utils_1.ClassName(dependency)]);
                             }

@@ -1,4 +1,4 @@
-import { Component, Route, Method, Permissions, RequiredQuery, RequiredHeaders, RequiredBody, Socket, IO } from '../../index';
+import { Component, Route, Method, Permissions, RequiredQuery, RequiredHeaders, RequiredBody, Socket, IO, SocketIOServer} from '../../index';
 import { Request, Response } from 'express';
 
 import { UserService } from '../services/user.service';
@@ -14,7 +14,8 @@ import { Authenticated, Authenticated2 } from '../permissions/authenticated.perm
 export class HomeComponent {
 
     constructor(
-        private userService: UserService
+        private userService: UserService,
+        private io: SocketIOServer
     ) { }
 
     @Route({ route: '/list' })

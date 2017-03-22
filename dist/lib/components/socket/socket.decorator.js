@@ -19,3 +19,29 @@ function IO(event) {
     };
 }
 exports.IO = IO;
+class SocketIOServer {
+    checkRequest(req, fn) {
+        throw new Error('Method not implemented.');
+    }
+    serveClient(v) { }
+    path(v) { }
+    adapter(v) { }
+    origins(v) { }
+    attach(srv, opts) { }
+    listen(srv, opts) { }
+    bind(srv) { }
+    onconnection(socket) { }
+    of(nsp) { }
+    close(fn) { }
+    on(event, listener) { }
+    to(room) { }
+    in(room) { }
+    use(fn) { }
+    emit(event, ...args) { }
+    send(...args) { }
+    write(...args) { }
+    clients(...args) { }
+    compress(...args) { }
+}
+exports.SocketIOServer = SocketIOServer;
+;
